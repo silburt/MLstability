@@ -6,9 +6,7 @@ import sys
 import random
 import numpy as np
 import pandas as pd
-import rebound
 import glob
-from progress.bar import Bar
 
 def make_runs(N_runs):
     #draw masses from the posterior
@@ -23,7 +21,7 @@ def make_runs(N_runs):
     path = 'output/'
     for i in xrange(0,N_runs):
         seed = int(10000*random.random())
-        name = path+'taueinner_migrate%.1e_Kin%.1e_Kout%.1e_sd%d'%(mig_rate[i],K1[i],K2[i],seed)
+        name = path+'m%.1e_tau%.1e_Kin%.1e_Kout%.1e_sd%d'%(m1,mig_rate[i],K1[i],K2[i],seed)
         runs.append((m1,m2,mig_rate[i],K1[i],K2[i],seed,name))
     return runs
 
@@ -35,10 +33,10 @@ def execute(pars):
 #############Main Code##############################
 if __name__== '__main__':
     os.system('make')
-    N_runs = 2
+    N_runs = 300
     runs = make_runs(N_runs)
     
-    pool = mp.Pool(processes=np.min([N_runs, 5]))
+    pool = mp.Pool(processes=np.min([N_runs, 10]))
     pool.map(execute, runs)
     pool.close()
     pool.join()
