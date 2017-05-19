@@ -24,7 +24,7 @@ time /= P1
 
 #plot
 axes[0].plot(time, phi1, '.', ms=ms, markeredgecolor='none', label='phi 1')
-axes[0].plot(time, phi2, '.', ms=ms, markeredgecolor='none', alpha=0.2, label='phi 2')
+axes[0].plot(time, phi2, '.', ms=ms, markeredgecolor='none', alpha=0.15, label='phi 2')
 #axes[0].plot(time, phi3, '.', ms=ms, markeredgecolor='none', label='phi 3')
 #axes[0].plot(time, dE,'o',ms=ms, markeredgecolor='none')
 axes[1].plot(time, a1, 'o', ms=ms, markeredgecolor='none')

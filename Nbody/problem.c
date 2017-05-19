@@ -121,7 +121,7 @@ int main(int argc, char* argv[]){
     // Integrate!
     reb_integrate(r, tmax);
     
-    if(r->N == 3) reb_output_binary(r, binary);
+    //if(r->N == 3) reb_output_binary(r, binary);
     
 }
 
@@ -132,10 +132,6 @@ void heartbeat(struct reb_simulation* r){
         tout += 25;
         double E = reb_tools_energy(r);
         double relE = fabs((E-E0)/E0);
-        int N_mini = 0;
-        if (r->ri_hermes.mini_active){
-            N_mini = r->ri_hermes.mini->N;
-        }
         
         FILE* f = fopen(output_name, "a");
         fprintf(f,"%e,%e,%d,%e,%e,%e,%e,%e,",r->t,relE,r->N,mig_rate,K1,K2,mig_time,dispersal_time+mig_time);
@@ -194,8 +190,8 @@ void calc_resonant_angles(struct reb_simulation* r, FILE* f){
         lambda[i] = MA + omega[i];
     }
     double phi = 0, phi2 = 0, phi3 = 0;
-    phi = 2.*lambda[2] - lambda[1] - omega[1];
-    phi2 = 2.*lambda[2] - lambda[1] - omega[2];
+    phi = 3.*lambda[2] - 2.*lambda[1] - omega[1];       //3:2 MMR
+    phi2 = 3.*lambda[2] - 2.*lambda[1] - omega[2];
     phi3 = omega[1] - omega[2];
     while(phi >= 2*M_PI) phi -= 2*M_PI;
     while(phi < 0.) phi += 2*M_PI;
