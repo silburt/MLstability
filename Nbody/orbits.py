@@ -20,8 +20,6 @@ plt.subplots_adjust(hspace = 0.2)
 P1 = (a1[0]**3 /0.92)**0.5 * 2*np.pi
 time /= P1
 
-#axes[0].set_xlim([1e5, 1.002e5])
-
 #plot
 axes[0].plot(time, phi1, '.', ms=ms, markeredgecolor='none', label='phi 1')
 axes[0].plot(time, phi2, '.', ms=ms, markeredgecolor='none', alpha=0.15, label='phi 2')
@@ -65,6 +63,8 @@ axes[3].set_ylabel('Eccentricity', fontsize=13)
 axes[4].set_xlabel('Orbital Period of Inner Planet', fontsize=13)
 axes[4].set_ylabel('Damping', fontsize=13)
 axes[4].set_yscale('log')
+
+#axes[0].set_xlim([1e4, 1.01e4])
 
 file_output_name = re.sub('\.txt$', '', file_name)
 plt.savefig(file_output_name+'_orbit.png')
